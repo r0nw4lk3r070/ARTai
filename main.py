@@ -1,8 +1,9 @@
-# main.py - ART Core with APIs - 2025-03-14
+# main.py - ART Core with APIs and Prompts - 2025-03-14
 import os
 from dotenv import load_dotenv
 from ARTchain.watchdog import Watchdog
 from ARTcore.api_clients import APIClients
+from ARTcore.prompts import Prompts
 
 class ART:
     def __init__(self):
@@ -15,16 +16,17 @@ class ART:
         }
         self.watchdog = Watchdog(self)
         self.api = APIClients(self.api_keys)
+        self.prompts = Prompts(self)
         print("ART core initialized")
 
     def respond(self, command):
-        if command.lower() == "watchdog backup":
-            return self.watchdog.backup()
-        elif command.lower().startswith("watchdog add "):
-            file_path = command.split("watchdog add ")[1].strip()
-            self.watchdog.add(file_path)
-            return f"Added {file_path}"
-        elif command.lower() == "weather":
+        # Try prompts first
+        prompt_response = self.prompts.handle(command)
+        if prompt_response is not None:
+            return prompt_response
+        
+        # Then API or weather
+        if command.lower() == "weather":
             return self.api.fetch_weather("Sint-Joris-Weert")
         else:
             return self.api.respond(command)
@@ -34,5 +36,6 @@ if __name__ == "__main__":
     print("ART online")
     print(art.respond("watchdog backup"))
     print(art.respond("watchdog add test.txt"))
+    print(art.respond("watchdog rollback"))
     print(art.respond("weather"))
     print(art.respond("oi mate"))
