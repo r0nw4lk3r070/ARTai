@@ -1,3 +1,4 @@
+# ... [rest unchanged]
 import os
 from dotenv import load_dotenv
 from ARTcore.config import load_config
@@ -32,60 +33,23 @@ class ART:
             print("Setting preferred mode to: offline (No APIs available)")
         
         self.core = ARTCore(self.root_dir, self.config, self.api_keys)
+        watchlist_path = os.path.join(self.root_dir, "ARTchain", "watchlist.json")
+        if not os.path.exists(watchlist_path):  # Fix: Create if missin'
+            with open(watchlist_path, 'w') as f:
+                f.write('[]')
+            print(f"Created empty watchlist at {watchlist_path}")
         self.watchdog = Watchdog(
             self.root_dir,
             os.path.join(self.root_dir, "ARTchain", "backups"),
-            os.path.join(self.root_dir, "ARTchain", "watchlist.json")
+            watchlist_path
         )
         self.weather_data = self.fetch_weather("Sint-Joris-Weert")
 
-    def fetch_weather(self, location):
-        if not self.api_keys["openweather"]:
-            return "Weather: API key missing"
-        try:
-            url = f"http://api.openweathermap.org/data/2.5/weather?q={location}&appid={self.api_keys['openweather']}&units=metric"
-            response = requests.get(url)
-            data = response.json()
-            if data["cod"] == 200:
-                temp = data["main"]["temp"]
-                condition = data["weather"][0]["main"]
-                return f"{location} {temp:.1f}°C - {condition}"
-            url = f"http://api.openweathermap.org/data/2.5/weather?lat=50.80&lon=4.87&appid={self.api_keys['openweather']}&units=metric"
-            response = requests.get(url)
-            data = response.json()
-            if data["cod"] == 200:
-                temp = data["main"]["temp"]
-                condition = data["weather"][0]["main"]
-                return f"Sint-Joris-Weert {temp:.1f}°C - {condition}"
-            return f"Sint-Joris-Weert - Error: {data['message']}"
-        except Exception as e:
-            return f"Sint-Joris-Weert - Error: {str(e)}"
+    # ... [rest unchanged]
 
     def respond(self, command):
         print(f"{self.name} heard: '{command}'")
         if command.lower() == "watchdog backup":
             self.watchdog.backup()
             return "Watchdog backup completed"
-        elif command.lower().startswith("watchdog add "):
-            file_path = command.split("watchdog add ")[1].strip()
-            self.watchdog.add(file_path)
-            return f"Added {file_path} to watchdog"
-        elif command.lower() == "watchdog rollback":
-            if messagebox.askyesno("Watchdog", "Ready to rollback. Are ye sure?"):
-                self.watchdog.rollback()
-                return "Watchdog rollback completed"
-            else:
-                print("Watchdog: Rollback aborted—ye didn’t say YES!")
-                return "Watchdog rollback aborted"
-        elif command.lower() == "weather":
-            self.weather_data = self.fetch_weather("Sint-Joris-Weert")
-            return self.weather_data
-        else:
-            return self.core.respond(command)
-
-if __name__ == "__main__":
-    root = tk.Tk()
-    art = ART()
-    app = Interface(root, art)  # No report_generator
-    print(f"{art.name} is online. Watchdog ready.")
-    root.mainloop()
+        # ... [rest unchanged]
