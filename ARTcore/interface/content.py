@@ -20,10 +20,10 @@ class ContentModule:
             self.chat_box.insert(tk.END, f"You: {command}\n")
             nano_response = self.art.respond(command)  # NanoGPT
             self.chat_box.insert(tk.END, f"NanoGPT: {nano_response}\n")
-            self.art.core.mode = "grok"  # Switch
+            self.art.api.mode = "grok"  # Switch
             grok_response = self.art.respond(f"NanoGPT said: {nano_response}")
             self.chat_box.insert(tk.END, f"Grok: {grok_response}\n")
-            self.art.core.mode = "nanogpt"  # Back
+            self.art.api.mode = "nanogpt"  # Back
             nano_loop = self.art.respond(f"Grok said: {grok_response}")
             self.chat_box.insert(tk.END, f"NanoGPT: {nano_loop}\n\n")
             self.chat_box.see(tk.END)

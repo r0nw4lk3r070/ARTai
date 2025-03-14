@@ -1,59 +1,39 @@
-# Debug Mode - AI-to-AI Ready - 2025-03-14
+# Main - Slim APIs + Watchdog + Weather - 2025-03-14
 import os
 import sys
 import traceback
-print("Starting imports...")
-try:
-    from dotenv import load_dotenv
-    from ARTcore.config import load_config
-    from ARTcore.art_core import ARTCore
-    from ARTchain.watchdog_core import Watchdog
-    import tkinter as tk
-    from tkinter import messagebox
-    from ARTcore.interface.interface import Interface
-    import requests
-    from settings import ROOT_DIR, ENV_PATH, API_KEYS
-except ImportError as e:
-    print(f"Import failed: {e}")
-    sys.exit(1)
+import tkinter as tk
+from dotenv import load_dotenv
+from tkinter import messagebox
+import requests
+from ARTcore.interface.interface import ARTInterface
+from ARTcore.api_settings import APISettings
+from ARTchain.watchdog import Watchdog
 
+print("Starting imports...")
+load_dotenv()
 print("Imports done, defining ART...")
 
 class ART:
     def __init__(self):
         print("ART init started...")
         self.name = "ART"
-        self.root_dir = ROOT_DIR
+        self.root_dir = "C:/Users/r0nw4/ART"
         print(f"ROOT_DIR: {self.root_dir}")
-        print(f"Loading .env from: {ENV_PATH}")
-        load_dotenv(dotenv_path=ENV_PATH)
-        self.api_keys = {k: os.getenv(v) for k, v in API_KEYS.items()}
+        print(f"Loading .env from: {self.root_dir}/.env")
+        self.api_keys = {
+            "lights": os.getenv("LIGHTS_API_KEY"),
+            "trading": os.getenv("TRADING_API_KEY"),
+            "nano_gpt": os.getenv("NANO_GPT_API_KEY"),
+            "grok_api": os.getenv("GROK_API_KEY"),
+            "openweather": os.getenv("OPENWEATHER_API_KEY")
+        }
         print("Loaded API keys:")
         for key, value in self.api_keys.items():
             print(f"{key}: {'Set' if value else 'Not set'}")
         
-        self.config = load_config()
-        if self.api_keys["nano_gpt"]:
-            self.config["preferred_mode"] = "nanogpt"
-            print("Setting preferred mode to: nanogpt (NanoGPT API available)")
-        elif self.api_keys["grok_api"]:
-            self.config["preferred_mode"] = "grok"
-            print("Setting preferred mode to: grok (XAI API available)")
-        else:
-            self.config["preferred_mode"] = "offline"
-            print("Setting preferred mode to: offline (No APIs available)")
-        
-        self.core = ARTCore(self.root_dir, self.config, self.api_keys)
-        watchlist_path = os.path.join(self.root_dir, "ARTchain", "watchlist.json")
-        if not os.path.exists(watchlist_path):
-            with open(watchlist_path, 'w') as f:
-                f.write('[]')
-            print(f"Created empty watchlist at {watchlist_path}")
-        self.watchdog = Watchdog(
-            self.root_dir,
-            os.path.join(self.root_dir, "ARTchain", "backups"),
-            watchlist_path
-        )
+        self.api = APISettings(self.api_keys)
+        self.watchdog = Watchdog(self)
         self.weather_data = self.fetch_weather("Sint-Joris-Weert")
         print("ART init done.")
 
@@ -99,7 +79,7 @@ class ART:
             self.weather_data = self.fetch_weather("Sint-Joris-Weert")
             return self.weather_data
         else:
-            return self.core.respond(command)
+            return self.api.respond(command)
 
 if __name__ == "__main__":
     print("Main block starting...")
@@ -108,7 +88,7 @@ if __name__ == "__main__":
         print("Tk root created.")
         art = ART()
         print("ART instance created.")
-        app = Interface(root, art)
+        app = ARTInterface(root, art)
         print("Interface created.")
         print(f"{art.name} is online. Watchdog ready.")
         root.mainloop()
