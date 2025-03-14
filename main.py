@@ -1,5 +1,6 @@
-# main.py - ART Core with APIs and Prompts - 2025-03-14
+# main.py - ART Core with APIs, Prompts, and CLI - 2025-03-14
 import os
+import sys
 from dotenv import load_dotenv
 from ARTchain.watchdog import Watchdog
 from ARTcore.api_clients import APIClients
@@ -20,12 +21,10 @@ class ART:
         print("ART core initialized")
 
     def respond(self, command):
-        # Try prompts first
         prompt_response = self.prompts.handle(command)
         if prompt_response is not None:
             return prompt_response
         
-        # Then API or weather
         if command.lower() == "weather":
             return self.api.fetch_weather("Sint-Joris-Weert")
         else:
@@ -34,8 +33,10 @@ class ART:
 if __name__ == "__main__":
     art = ART()
     print("ART online")
-    print(art.respond("watchdog backup"))
-    print(art.respond("watchdog add test.txt"))
-    print(art.respond("watchdog rollback"))
-    print(art.respond("weather"))
-    print(art.respond("oi mate"))
+    if len(sys.argv) > 1:
+        # CLI mode
+        command = " ".join(sys.argv[1:])
+        print(art.respond(command))
+    else:
+        # No auto-test—wait for CLI input
+        print("Awaiting yer orders, cap’n! Try: python main.py \"watchdog backup\"")
