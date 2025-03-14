@@ -7,7 +7,6 @@ import tkinter as tk
 from tkinter import messagebox
 from ARTcore.interface.interface import Interface
 import requests
-from ARTcore.report_generator import ReportGenerator
 from settings import ROOT_DIR, ENV_PATH, API_KEYS
 
 class ART:
@@ -81,27 +80,12 @@ class ART:
         elif command.lower() == "weather":
             self.weather_data = self.fetch_weather("Sint-Joris-Weert")
             return self.weather_data
-        elif command.lower() == "generate report":
-            try:
-                if not hasattr(self, 'report_generator'):
-                    self.report_generator = ReportGenerator(self)
-                report_path = self.report_generator.generate_full_report()
-                print(f"Report generated at: {report_path}")
-                return f"Report generated: {report_path}"
-            except Exception as e:
-                error_msg = f"Error generating report: {str(e)}"
-                print(error_msg)
-                return error_msg
         else:
             return self.core.respond(command)
 
 if __name__ == "__main__":
     root = tk.Tk()
     art = ART()
-    report_generator = ReportGenerator(art)
-    art.report_generator = report_generator
-    
-    app = Interface(root, art, report_generator)
-    app.update_weather()
+    app = Interface(root, art)  # No report_generator
     print(f"{art.name} is online. Watchdog ready.")
     root.mainloop()
