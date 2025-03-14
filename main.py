@@ -1,0 +1,107 @@
+import os
+from dotenv import load_dotenv
+from ARTcore.config import load_config
+from ARTcore.art_core import ARTCore
+from ARTchain.watchdog_core import Watchdog
+import tkinter as tk
+from tkinter import messagebox
+from ARTcore.interface.interface import Interface
+import requests
+from ARTcore.report_generator import ReportGenerator
+from settings import ROOT_DIR, ENV_PATH, API_KEYS
+
+class ART:
+    def __init__(self):
+        self.name = "ART"
+        self.root_dir = ROOT_DIR
+        print(f"Loading .env from: {ENV_PATH}")
+        load_dotenv(dotenv_path=ENV_PATH)
+        self.api_keys = {k: os.getenv(v) for k, v in API_KEYS.items()}
+        print("Loaded API keys:")
+        for key, value in self.api_keys.items():
+            print(f"{key}: {'Set' if value else 'Not set'}")
+        
+        self.config = load_config()
+        if self.api_keys["nano_gpt"]:
+            self.config["preferred_mode"] = "nanogpt"
+            print("Setting preferred mode to: nanogpt (NanoGPT API available)")
+        elif self.api_keys["grok_api"]:
+            self.config["preferred_mode"] = "grok"
+            print("Setting preferred mode to: grok (XAI API available)")
+        else:
+            self.config["preferred_mode"] = "offline"
+            print("Setting preferred mode to: offline (No APIs available)")
+        
+        self.core = ARTCore(self.root_dir, self.config, self.api_keys)
+        self.watchdog = Watchdog(
+            self.root_dir,
+            os.path.join(self.root_dir, "ARTchain", "backups"),
+            os.path.join(self.root_dir, "ARTchain", "watchlist.json")
+        )
+        self.weather_data = self.fetch_weather("Sint-Joris-Weert")
+
+    def fetch_weather(self, location):
+        if not self.api_keys["openweather"]:
+            return "Weather: API key missing"
+        try:
+            url = f"http://api.openweathermap.org/data/2.5/weather?q={location}&appid={self.api_keys['openweather']}&units=metric"
+            response = requests.get(url)
+            data = response.json()
+            if data["cod"] == 200:
+                temp = data["main"]["temp"]
+                condition = data["weather"][0]["main"]
+                return f"{location} {temp:.1f}°C - {condition}"
+            url = f"http://api.openweathermap.org/data/2.5/weather?lat=50.80&lon=4.87&appid={self.api_keys['openweather']}&units=metric"
+            response = requests.get(url)
+            data = response.json()
+            if data["cod"] == 200:
+                temp = data["main"]["temp"]
+                condition = data["weather"][0]["main"]
+                return f"Sint-Joris-Weert {temp:.1f}°C - {condition}"
+            return f"Sint-Joris-Weert - Error: {data['message']}"
+        except Exception as e:
+            return f"Sint-Joris-Weert - Error: {str(e)}"
+
+    def respond(self, command):
+        print(f"{self.name} heard: '{command}'")
+        if command.lower() == "watchdog backup":
+            self.watchdog.backup()
+            return "Watchdog backup completed"
+        elif command.lower().startswith("watchdog add "):
+            file_path = command.split("watchdog add ")[1].strip()
+            self.watchdog.add(file_path)
+            return f"Added {file_path} to watchdog"
+        elif command.lower() == "watchdog rollback":
+            if messagebox.askyesno("Watchdog", "Ready to rollback. Are ye sure?"):
+                self.watchdog.rollback()
+                return "Watchdog rollback completed"
+            else:
+                print("Watchdog: Rollback aborted—ye didn’t say YES!")
+                return "Watchdog rollback aborted"
+        elif command.lower() == "weather":
+            self.weather_data = self.fetch_weather("Sint-Joris-Weert")
+            return self.weather_data
+        elif command.lower() == "generate report":
+            try:
+                if not hasattr(self, 'report_generator'):
+                    self.report_generator = ReportGenerator(self)
+                report_path = self.report_generator.generate_full_report()
+                print(f"Report generated at: {report_path}")
+                return f"Report generated: {report_path}"
+            except Exception as e:
+                error_msg = f"Error generating report: {str(e)}"
+                print(error_msg)
+                return error_msg
+        else:
+            return self.core.respond(command)
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    art = ART()
+    report_generator = ReportGenerator(art)
+    art.report_generator = report_generator
+    
+    app = Interface(root, art, report_generator)
+    app.update_weather()
+    print(f"{art.name} is online. Watchdog ready.")
+    root.mainloop()

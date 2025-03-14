@@ -1,0 +1,329 @@
+{
+    "watchlist": [
+        {
+            "path": "main.py",
+            "origin": "user",
+            "added": "2025-03-12T12:00:00Z"
+        },
+        {
+            "path": "ARTchain/watchdog.py",
+            "origin": "user",
+            "added": "2025-03-12T12:00:00Z"
+        },
+        {
+            "path": "ARTchain/overwatch.py",
+            "origin": "user",
+            "added": "2025-03-12T12:00:00Z"
+        },
+        {
+            "path": "ARTcore/config.py",
+            "origin": "user",
+            "added": "2025-03-12T12:00:00Z"
+        },
+        {
+            "path": "ARTchain\\overwatch.py",
+            "origin": "user",
+            "added": "2025-03-12T23:17:32.236154"
+        },
+        {
+            "path": "ARTchain\\overwatch_core.py",
+            "origin": "user",
+            "added": "2025-03-12T23:17:32.240160"
+        },
+        {
+            "path": "ARTchain\\overwatch_logging.py",
+            "origin": "user",
+            "added": "2025-03-12T23:17:32.243166"
+        },
+        {
+            "path": "ARTchain\\watchdog_core.py",
+            "origin": "user",
+            "added": "2025-03-12T23:17:32.256797"
+        },
+        {
+            "path": "ARTchain\\watchdog_utils.py",
+            "origin": "user",
+            "added": "2025-03-12T23:17:32.260760"
+        },
+        {
+            "path": "ARTcore\\art_core.py",
+            "origin": "user",
+            "added": "2025-03-12T23:17:32.269230"
+        },
+        {
+            "path": "ARTcore\\config.py",
+            "origin": "user",
+            "added": "2025-03-12T23:17:32.273539"
+        },
+        {
+            "path": "ARTchain\\backups\\main.py",
+            "origin": "user",
+            "added": "2025-03-12T23:18:34.645707"
+        },
+        {
+            "path": "ARTchain\\backups\\ARTchain\\overwatch.py",
+            "origin": "user",
+            "added": "2025-03-12T23:18:34.650983"
+        },
+        {
+            "path": "ARTchain\\backups\\ARTchain\\overwatch_core.py",
+            "origin": "user",
+            "added": "2025-03-12T23:18:34.656247"
+        },
+        {
+            "path": "ARTchain\\backups\\ARTchain\\overwatch_logging.py",
+            "origin": "user",
+            "added": "2025-03-12T23:18:34.667536"
+        },
+        {
+            "path": "ARTchain\\backups\\ARTchain\\watchdog_core.py",
+            "origin": "user",
+            "added": "2025-03-12T23:18:34.673392"
+        },
+        {
+            "path": "ARTchain\\backups\\ARTchain\\watchdog_utils.py",
+            "origin": "user",
+            "added": "2025-03-12T23:18:34.677629"
+        },
+        {
+            "path": "ARTchain\\backups\\ARTcore\\art_core.py",
+            "origin": "user",
+            "added": "2025-03-12T23:18:34.683627"
+        },
+        {
+            "path": "ARTchain\\backups\\ARTcore\\config.py",
+            "origin": "user",
+            "added": "2025-03-12T23:18:34.689626"
+        },
+        {
+            "path": "ARTchain\\backups\\ARTchain\\backups\\main.py",
+            "origin": "user",
+            "added": "2025-03-13T06:28:29.433089"
+        },
+        {
+            "path": "ARTchain\\backups\\ARTchain\\backups\\ARTchain\\overwatch.py",
+            "origin": "user",
+            "added": "2025-03-13T06:28:29.436103"
+        },
+        {
+            "path": "ARTchain\\backups\\ARTchain\\backups\\ARTchain\\overwatch_core.py",
+            "origin": "user",
+            "added": "2025-03-13T06:28:29.438437"
+        },
+        {
+            "path": "ARTchain\\backups\\ARTchain\\backups\\ARTchain\\overwatch_logging.py",
+            "origin": "user",
+            "added": "2025-03-13T06:28:29.439775"
+        },
+        {
+            "path": "ARTchain\\backups\\ARTchain\\backups\\ARTchain\\watchdog_core.py",
+            "origin": "user",
+            "added": "2025-03-13T06:28:29.441789"
+        },
+        {
+            "path": "ARTchain\\backups\\ARTchain\\backups\\ARTchain\\watchdog_utils.py",
+            "origin": "user",
+            "added": "2025-03-13T06:28:29.442788"
+        },
+        {
+            "path": "ARTchain\\backups\\ARTchain\\backups\\ARTcore\\art_core.py",
+            "origin": "user",
+            "added": "2025-03-13T06:28:29.446272"
+        },
+        {
+            "path": "ARTchain\\backups\\ARTchain\\backups\\ARTcore\\config.py",
+            "origin": "user",
+            "added": "2025-03-13T06:28:29.448296"
+        },
+        {
+            "path": "ARTcore\\__init__.py",
+            "origin": "user",
+            "added": "2025-03-13T10:22:06.385595"
+        },
+        {
+            "path": "ARTcore\\interface\\chat.py",
+            "origin": "user",
+            "added": "2025-03-13T10:22:06.388379"
+        },
+        {
+            "path": "ARTcore\\interface\\content.py",
+            "origin": "user",
+            "added": "2025-03-13T10:22:06.390750"
+        },
+        {
+            "path": "ARTcore\\interface\\content_ai.py",
+            "origin": "user",
+            "added": "2025-03-13T10:22:06.393784"
+        },
+        {
+            "path": "ARTcore\\interface\\content_cli.py",
+            "origin": "user",
+            "added": "2025-03-13T10:22:06.396341"
+        },
+        {
+            "path": "ARTcore\\interface\\content_code.py",
+            "origin": "user",
+            "added": "2025-03-13T10:22:06.400356"
+        },
+        {
+            "path": "ARTcore\\interface\\control.py",
+            "origin": "user",
+            "added": "2025-03-13T10:22:06.402409"
+        },
+        {
+            "path": "ARTcore\\interface\\interface.py",
+            "origin": "user",
+            "added": "2025-03-13T10:22:06.403409"
+        },
+        {
+            "path": "ARTcore\\interface\\stats.py",
+            "origin": "user",
+            "added": "2025-03-13T10:22:06.404799"
+        },
+        {
+            "path": "ARTcore\\interface\\switches.py",
+            "origin": "user",
+            "added": "2025-03-13T10:22:06.404799"
+        },
+        {
+            "path": "ARTcore\\interface\\to_do.py",
+            "origin": "user",
+            "added": "2025-03-13T10:22:06.404799"
+        },
+        {
+            "path": "ARTcore\\interface\\web.py",
+            "origin": "user",
+            "added": "2025-03-13T10:22:06.413707"
+        },
+        {
+            "path": "test_main.py",
+            "origin": "user",
+            "added": "2025-03-13T10:41:49.782758"
+        },
+        {
+            "path": "ARTcore\\interface\\content_web.py",
+            "origin": "user",
+            "added": "2025-03-13T15:00:18.174302"
+        },
+        {
+            "path": "ARTchain/overwatch_core.py",
+            "origin": "user",
+            "added": "2025-03-13T15:42:20.213306"
+        },
+        {
+            "path": "ARTchain/overwatch_logging.py",
+            "origin": "user",
+            "added": "2025-03-13T15:42:20.217279"
+        },
+        {
+            "path": "ARTchain/watchdog_core.py",
+            "origin": "user",
+            "added": "2025-03-13T15:42:20.219465"
+        },
+        {
+            "path": "ARTchain/watchdog_utils.py",
+            "origin": "user",
+            "added": "2025-03-13T15:42:20.222482"
+        },
+        {
+            "path": "ARTcore/art_core.py",
+            "origin": "user",
+            "added": "2025-03-13T15:42:20.223526"
+        },
+        {
+            "path": "ARTcore/__init__.py",
+            "origin": "user",
+            "added": "2025-03-13T15:42:20.223526"
+        },
+        {
+            "path": "ARTcore/interface/chat.py",
+            "origin": "user",
+            "added": "2025-03-13T15:42:20.231020"
+        },
+        {
+            "path": "ARTcore/interface/content.py",
+            "origin": "user",
+            "added": "2025-03-13T15:42:20.234152"
+        },
+        {
+            "path": "ARTcore/interface/content_ai.py",
+            "origin": "user",
+            "added": "2025-03-13T15:42:20.236226"
+        },
+        {
+            "path": "ARTcore/interface/content_cli.py",
+            "origin": "user",
+            "added": "2025-03-13T15:42:20.238217"
+        },
+        {
+            "path": "ARTcore/interface/content_code.py",
+            "origin": "user",
+            "added": "2025-03-13T15:42:20.241973"
+        },
+        {
+            "path": "ARTcore/interface/content_web.py",
+            "origin": "user",
+            "added": "2025-03-13T15:42:20.244989"
+        },
+        {
+            "path": "ARTcore/interface/control.py",
+            "origin": "user",
+            "added": "2025-03-13T15:42:20.247457"
+        },
+        {
+            "path": "ARTcore/interface/interface.py",
+            "origin": "user",
+            "added": "2025-03-13T15:42:20.249697"
+        },
+        {
+            "path": "ARTcore/interface/stats.py",
+            "origin": "user",
+            "added": "2025-03-13T15:42:20.252697"
+        },
+        {
+            "path": "ARTcore/interface/switches.py",
+            "origin": "user",
+            "added": "2025-03-13T15:42:20.255697"
+        },
+        {
+            "path": "ARTcore/interface/to_do.py",
+            "origin": "user",
+            "added": "2025-03-13T15:42:20.259979"
+        },
+        {
+            "path": "main.cli.py",
+            "origin": "user",
+            "added": "2025-03-13T21:14:02.062363"
+        },
+        {
+            "path": "ARTchain/watchdog_emergency.py",
+            "origin": "user",
+            "added": "2025-03-13T21:14:02.062363"
+        },
+        {
+            "path": "ARTcore/interface/color_adjust.py",
+            "origin": "user",
+            "added": "2025-03-13T21:14:02.075097"
+        },
+        {
+            "path": "ARTcore/api_integration.py",
+            "origin": "user",
+            "added": "2025-03-13T21:45:42.047633"
+        },
+        {
+            "path": "ARTcore/prompts.py",
+            "origin": "user",
+            "added": "2025-03-13T21:45:42.068631"
+        },
+        {
+            "path": "ART_DB/db_structure.py",
+            "origin": "user",
+            "added": "2025-03-13T21:45:42.079238"
+        },
+        {
+            "path": "ART_DB/initial_data_loader.py",
+            "origin": "user",
+            "added": "2025-03-13T21:45:42.082229"
+        }
+    ]
+}

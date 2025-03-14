@@ -1,0 +1,235 @@
+{
+    "files": [
+        {
+            "original_path": "main.py",
+            "hash": "b6e6c38a6622a793db551b181fcb1b4507813ce76183f8540567a6fde5f29351",
+            "backed_up": "2025-03-13T21:45:42.144789"
+        },
+        {
+            "original_path": "ARTchain/overwatch.py",
+            "hash": "42df25c44d7ec6fc91d255640d0fd022707742d88de332ebf72839f839a2e34e",
+            "backed_up": "2025-03-13T21:45:42.146696"
+        },
+        {
+            "original_path": "ARTcore/config.py",
+            "hash": "f027bf84a6646bacad3a891c236457f30585f5d894f690b9fc5e14beb083eeb5",
+            "backed_up": "2025-03-13T21:45:42.146696"
+        },
+        {
+            "original_path": "ARTchain/overwatch.py",
+            "hash": "42df25c44d7ec6fc91d255640d0fd022707742d88de332ebf72839f839a2e34e",
+            "backed_up": "2025-03-13T21:45:42.146696"
+        },
+        {
+            "original_path": "ARTchain/overwatch_core.py",
+            "hash": "5720f698b503a0c75994fbb4d578074e24c25d2ad740ada152e6ce2dd5884f80",
+            "backed_up": "2025-03-13T21:45:42.146696"
+        },
+        {
+            "original_path": "ARTchain/overwatch_logging.py",
+            "hash": "5b419a79310c601b89aa1180301549c3afe6eec8398ac0f1feb2b3eb4574039b",
+            "backed_up": "2025-03-13T21:45:42.146696"
+        },
+        {
+            "original_path": "ARTchain/watchdog_core.py",
+            "hash": "d520a6e2c096f3f1c0b0dec06425163c2a64f8f07b0f0befbc976e6bccfd650a",
+            "backed_up": "2025-03-13T21:45:42.146696"
+        },
+        {
+            "original_path": "ARTchain/watchdog_utils.py",
+            "hash": "d5be6651ca5243e5b237dca858fd157ce70e357d81cf66ce931afe0e3e1e67db",
+            "backed_up": "2025-03-13T21:45:42.146696"
+        },
+        {
+            "original_path": "ARTcore/art_core.py",
+            "hash": "82f5b21b2844fee5f9ddfe72826771844774b12b76abee4c31df8cef0f188f45",
+            "backed_up": "2025-03-13T21:45:42.146696"
+        },
+        {
+            "original_path": "ARTcore/config.py",
+            "hash": "f027bf84a6646bacad3a891c236457f30585f5d894f690b9fc5e14beb083eeb5",
+            "backed_up": "2025-03-13T21:45:42.146696"
+        },
+        {
+            "original_path": "ARTcore/__init__.py",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "backed_up": "2025-03-13T21:45:42.161549"
+        },
+        {
+            "original_path": "ARTcore/interface/chat.py",
+            "hash": "1e69aadff7fa22a209659ae2d7de45e278aecbfb1f44cb34cf1ca0f9bc4a8374",
+            "backed_up": "2025-03-13T21:45:42.164084"
+        },
+        {
+            "original_path": "ARTcore/interface/content.py",
+            "hash": "3e178ee77b36be8de547a5163ae47b18c1c9f077c62633c56822744462430527",
+            "backed_up": "2025-03-13T21:45:42.164084"
+        },
+        {
+            "original_path": "ARTcore/interface/content_ai.py",
+            "hash": "18584f5b68b96de6709d8997203c488b5129e9bb8112aaddca7f001c47d0f1f5",
+            "backed_up": "2025-03-13T21:45:42.164084"
+        },
+        {
+            "original_path": "ARTcore/interface/content_cli.py",
+            "hash": "ea71431a21235bcedf31f7b822d0e464ae2b0d4c5546573f3104c2582fb0cac8",
+            "backed_up": "2025-03-13T21:45:42.164084"
+        },
+        {
+            "original_path": "ARTcore/interface/content_code.py",
+            "hash": "e8856c884e3f4088b3a1ff7a7709ecab1e3b5bcb22a502572b5040cd7e7f867e",
+            "backed_up": "2025-03-13T21:45:42.164084"
+        },
+        {
+            "original_path": "ARTcore/interface/control.py",
+            "hash": "5609b2be51a6e9af83b861241b5f33dd2edfe530acbe9048fcc3817f695fb693",
+            "backed_up": "2025-03-13T21:45:42.164084"
+        },
+        {
+            "original_path": "ARTcore/interface/interface.py",
+            "hash": "2b221440825b98665a1e79c3e9cc9af90508074cea1a5f4f8c5e9dea4f36314e",
+            "backed_up": "2025-03-13T21:45:42.164084"
+        },
+        {
+            "original_path": "ARTcore/interface/stats.py",
+            "hash": "76310d14a8537c8b504d5e58cfbe06b271d61fb8dcdeadd6ba1dfd3afc273614",
+            "backed_up": "2025-03-13T21:45:42.164084"
+        },
+        {
+            "original_path": "ARTcore/interface/switches.py",
+            "hash": "36a605dbc8a47c24edb3c13a16744e7d917d0f397181564669c8e2e833c44755",
+            "backed_up": "2025-03-13T21:45:42.164084"
+        },
+        {
+            "original_path": "ARTcore/interface/to_do.py",
+            "hash": "141560a6a16f02e7e61ea7371ba546b379142b733c8e2fbdfc625a4ae63c1b0d",
+            "backed_up": "2025-03-13T21:45:42.164084"
+        },
+        {
+            "original_path": "ARTcore/interface/content_web.py",
+            "hash": "94f02851fd7ce95a65c6cf02b4324fc48791057b6e9e62c5c78cd4ba21db4746",
+            "backed_up": "2025-03-13T21:45:42.164084"
+        },
+        {
+            "original_path": "ARTchain/overwatch_core.py",
+            "hash": "5720f698b503a0c75994fbb4d578074e24c25d2ad740ada152e6ce2dd5884f80",
+            "backed_up": "2025-03-13T21:45:42.180148"
+        },
+        {
+            "original_path": "ARTchain/overwatch_logging.py",
+            "hash": "5b419a79310c601b89aa1180301549c3afe6eec8398ac0f1feb2b3eb4574039b",
+            "backed_up": "2025-03-13T21:45:42.182377"
+        },
+        {
+            "original_path": "ARTchain/watchdog_core.py",
+            "hash": "d520a6e2c096f3f1c0b0dec06425163c2a64f8f07b0f0befbc976e6bccfd650a",
+            "backed_up": "2025-03-13T21:45:42.182377"
+        },
+        {
+            "original_path": "ARTchain/watchdog_utils.py",
+            "hash": "d5be6651ca5243e5b237dca858fd157ce70e357d81cf66ce931afe0e3e1e67db",
+            "backed_up": "2025-03-13T21:45:42.182377"
+        },
+        {
+            "original_path": "ARTcore/art_core.py",
+            "hash": "82f5b21b2844fee5f9ddfe72826771844774b12b76abee4c31df8cef0f188f45",
+            "backed_up": "2025-03-13T21:45:42.182377"
+        },
+        {
+            "original_path": "ARTcore/__init__.py",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "backed_up": "2025-03-13T21:45:42.182377"
+        },
+        {
+            "original_path": "ARTcore/interface/chat.py",
+            "hash": "1e69aadff7fa22a209659ae2d7de45e278aecbfb1f44cb34cf1ca0f9bc4a8374",
+            "backed_up": "2025-03-13T21:45:42.182377"
+        },
+        {
+            "original_path": "ARTcore/interface/content.py",
+            "hash": "3e178ee77b36be8de547a5163ae47b18c1c9f077c62633c56822744462430527",
+            "backed_up": "2025-03-13T21:45:42.182377"
+        },
+        {
+            "original_path": "ARTcore/interface/content_ai.py",
+            "hash": "18584f5b68b96de6709d8997203c488b5129e9bb8112aaddca7f001c47d0f1f5",
+            "backed_up": "2025-03-13T21:45:42.182377"
+        },
+        {
+            "original_path": "ARTcore/interface/content_cli.py",
+            "hash": "ea71431a21235bcedf31f7b822d0e464ae2b0d4c5546573f3104c2582fb0cac8",
+            "backed_up": "2025-03-13T21:45:42.182377"
+        },
+        {
+            "original_path": "ARTcore/interface/content_code.py",
+            "hash": "e8856c884e3f4088b3a1ff7a7709ecab1e3b5bcb22a502572b5040cd7e7f867e",
+            "backed_up": "2025-03-13T21:45:42.182377"
+        },
+        {
+            "original_path": "ARTcore/interface/content_web.py",
+            "hash": "94f02851fd7ce95a65c6cf02b4324fc48791057b6e9e62c5c78cd4ba21db4746",
+            "backed_up": "2025-03-13T21:45:42.182377"
+        },
+        {
+            "original_path": "ARTcore/interface/control.py",
+            "hash": "5609b2be51a6e9af83b861241b5f33dd2edfe530acbe9048fcc3817f695fb693",
+            "backed_up": "2025-03-13T21:45:42.182377"
+        },
+        {
+            "original_path": "ARTcore/interface/interface.py",
+            "hash": "2b221440825b98665a1e79c3e9cc9af90508074cea1a5f4f8c5e9dea4f36314e",
+            "backed_up": "2025-03-13T21:45:42.182377"
+        },
+        {
+            "original_path": "ARTcore/interface/stats.py",
+            "hash": "76310d14a8537c8b504d5e58cfbe06b271d61fb8dcdeadd6ba1dfd3afc273614",
+            "backed_up": "2025-03-13T21:45:42.182377"
+        },
+        {
+            "original_path": "ARTcore/interface/switches.py",
+            "hash": "36a605dbc8a47c24edb3c13a16744e7d917d0f397181564669c8e2e833c44755",
+            "backed_up": "2025-03-13T21:45:42.195770"
+        },
+        {
+            "original_path": "ARTcore/interface/to_do.py",
+            "hash": "141560a6a16f02e7e61ea7371ba546b379142b733c8e2fbdfc625a4ae63c1b0d",
+            "backed_up": "2025-03-13T21:45:42.196664"
+        },
+        {
+            "original_path": "main.cli.py",
+            "hash": "8801af1f424f90feb097184b6d4a72c9d9799c0c8f643b906d28bb4ff8c83cff",
+            "backed_up": "2025-03-13T21:45:42.196664"
+        },
+        {
+            "original_path": "ARTchain/watchdog_emergency.py",
+            "hash": "cde8e30aaa9ab6527d834becd1b5e9d4d791a066be0d74e1e945421de1c68752",
+            "backed_up": "2025-03-13T21:45:42.196664"
+        },
+        {
+            "original_path": "ARTcore/interface/color_adjust.py",
+            "hash": "044f5b47337b32ebdab10d0f2b614bdd01535a9d9bf6c916276b512eb3c99c99",
+            "backed_up": "2025-03-13T21:45:42.201185"
+        },
+        {
+            "original_path": "ARTcore/api_integration.py",
+            "hash": "74dd1a52fc26de465dae90bd6ed532a9273d2ec077b84d2280ff92b16cc296c4",
+            "backed_up": "2025-03-13T21:45:42.201185"
+        },
+        {
+            "original_path": "ARTcore/prompts.py",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "backed_up": "2025-03-13T21:45:42.201185"
+        },
+        {
+            "original_path": "ART_DB/db_structure.py",
+            "hash": "9942d31a6e3436db864247efc823965dd9224514184b352023ca07d3ae1a9051",
+            "backed_up": "2025-03-13T21:45:42.201185"
+        },
+        {
+            "original_path": "ART_DB/initial_data_loader.py",
+            "hash": "e36c5360c9e0f0c40b0d1ecd2af13293a1606a241a6a288cbcdfe6ee9cccfc19",
+            "backed_up": "2025-03-13T21:45:42.213288"
+        }
+    ],
+    "timestamp": "2025-03-13T21:45:42.131718"
+}

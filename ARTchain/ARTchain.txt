@@ -1,0 +1,3 @@
+A file, logging and backup system for transarency, art tracking, off and on line movements, watchdog, blockchain merge ready.
+
+Future implementations: blockchain technology inspired to nano netwerk $xno
