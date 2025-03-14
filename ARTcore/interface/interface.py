@@ -1,7 +1,7 @@
 import tkinter as tk
 from .chat import ChatModule
 from .stats import StatsModule
-from ...settings import THEME, CHAT_FONT
+from settings import THEME, CHAT_FONT  # Absolute import
 
 class Interface:
     def __init__(self, root, art_instance, report_generator):
