@@ -38,21 +38,22 @@ if __name__ == "__main__":
     db_size = art.db.get_db_size()
     api_mode = art.api.mode
     api_model = "chatgpt-4o-latest" if api_mode == "nanogpt" else "N/A"
+    balance = art.api.balance
     if len(sys.argv) > 1:
         # CLI mode
         command = " ".join(sys.argv[1:])
         if command.lower() == "weather":
             response = art.api.fetch_weather("Sint-Joris-Weert")
             art.db.log_chat(f"Command: {command} | Response: {response}")
-            print(f"API: {api_mode} (Model: {api_model}) | DB Size: {db_size:.5f} GB")
+            print(f"API: {api_mode} (Model: {api_model}) | Balance: {balance} | DB Size: {db_size:.5f} GB")
             print(response)
         else:
             response = art.respond(command)
-            print(f"API: {api_mode} (Model: {api_model}) | DB Size: {db_size:.5f} GB")
+            print(f"API: {api_mode} (Model: {api_model}) | Balance: {balance} | DB Size: {db_size:.5f} GB")
             print(response)
     else:
         # Interactive loop
-        print(f"Type yer orders, cap’n! ('exit' to quit) | API: {api_mode} (Model: {api_model}) | DB Size: {db_size:.5f} GB")
+        print(f"Type yer orders, cap’n! ('exit' to quit) | API: {api_mode} (Model: {api_model}) | Balance: {balance} | DB Size: {db_size:.5f} GB")
         while True:
             command = input("ART> ")
             if command.lower() == "exit":
@@ -62,5 +63,6 @@ if __name__ == "__main__":
             db_size = art.db.get_db_size()
             api_mode = art.api.mode
             api_model = "chatgpt-4o-latest" if api_mode == "nanogpt" else "N/A"
-            print(f"API: {api_mode} (Model: {api_model}) | DB Size: {db_size:.5f} GB")
+            balance = art.api.balance
+            print(f"API: {api_mode} (Model: {api_model}) | Balance: {balance} | DB Size: {db_size:.5f} GB")
             print(response)

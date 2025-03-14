@@ -1,5 +1,6 @@
 # ARTcore/api_clients.py - API Clients - 2025-03-14
 import requests
+import json  # Added!
 from threading import Thread
 from queue import Queue
 
@@ -11,6 +12,7 @@ class APIClients:
         self.nano_balance_url = "https://nano-gpt.com/api/check-nano-balance"
         self.response_queue = Queue()
         self.mode = "nanogpt" if api_keys.get("nano_gpt") else "offline"
+        self.balance = self.check_balance() if self.mode == "nanogpt" else "N/A"
         print(f"API clients initialized in {self.mode} mode")
 
     def respond(self, command):
@@ -57,7 +59,7 @@ class APIClients:
             parts = raw.split('<NanoGPT>')
             text_response = parts[0].strip()
             nano_info = json.loads(parts[1].split('</NanoGPT>')[0])
-            result = f"{text_response} (Cost: {nano_info['cost']}, Tokens: {nano_info['inputTokens']}/{nano_info['outputTokens']})"
+            result = f"{text_response} (Cost: {nano_info['cost']} Nano)"
             print(f"NanoGPT response: {result}")
             self.response_queue.put(result)
         except Exception as e:
@@ -104,7 +106,7 @@ class APIClients:
             response = requests.post(self.nano_balance_url, headers=headers, timeout=5)
             response.raise_for_status()
             balance_info = response.json()
-            result = f"Balance: {balance_info['balance']} Nano | Receivable: {balance_info['receivable']} Nano | Earned: {balance_info['earned']} Nano"
+            result = f"Balance: {balance_info['balance']} Nano"
             print(f"NanoGPT balance: {result}")
             return result
         except Exception as e:
