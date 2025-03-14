@@ -1,4 +1,4 @@
-# Restored from ART Watchdog backup - Enhanced 2025-03-13
+# Stats - XNO Balance - 2025-03-14
 import tkinter as tk
 import os
 import time
@@ -17,7 +17,6 @@ class StatsModule:
         self.nano_cost = 0.0
         self.grok_cost = 0.0
         self.update_stats()
-        self.update_balance()
 
     def update_stats(self):
         self.stats_box.delete(1.0, tk.END)
@@ -27,8 +26,8 @@ class StatsModule:
         self.stats_box.insert(tk.END, f"Project Size: {self.get_dir_size(self.art.root_dir) / (1024 ** 3):.2f} GB\n")
         self.stats_box.insert(tk.END, f"Run Time: {time.strftime('%H:%M:%S', time.gmtime(int(time.time() - self.art.core.start_time)))}\n")
         self.stats_box.insert(tk.END, f"File Count: {sum(len(files) for _, _, files in os.walk(self.art.root_dir))}\n")
-        self.stats_box.insert(tk.END, f"Grok: ${self.grok_cost:.2f}\n")
-        self.stats_box.insert(tk.END, f"Nano GPT: {self.nano_balance:.4f} XNO\n")
+        self.stats_box.insert(tk.END, f"Grok Cost: ${self.grok_cost:.2f}\n")
+        self.stats_box.insert(tk.END, f"NanoGPT Balance: {self.nano_balance:.4f} XNO\n")
         self.stats_box.insert(tk.END, "[Watchdog Backup]\n", "button")
         self.stats_box.insert(tk.END, "[Check Balance]\n", "button")
         self.stats_box.tag_config("button", foreground="#00FFFF")
@@ -46,16 +45,13 @@ class StatsModule:
             self.stats_box.insert(tk.END, "Balance updated!\n")
 
     def update_balance(self):
-        if self.art.api_keys.get("nano_gpt"):
-            try:
-                balance_info = self.art.core.llm_integration.get_balance()
-                if balance_info:
-                    self.nano_balance = float(balance_info.get("balance", 0.0))
-                    self.nano_cost = 0.001  # Placeholder
-            except Exception as e:
-                print(f"Failed to update NanoGPT balance: {e}")
-                self.nano_balance = 0.0
-                self.nano_cost = 0.0
+        balance_info = self.art.core.get_balance()
+        if balance_info and "balance" in balance_info:
+            self.nano_balance = float(balance_info["balance"])
+            self.nano_cost = 0.001  # Placeholder
+        else:
+            self.nano_balance = 0.0
+            self.nano_cost = 0.0
         self.update_stats()
 
     def get_dir_size(self, path):
