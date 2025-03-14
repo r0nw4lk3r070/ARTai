@@ -1,55 +1,43 @@
 import tkinter as tk
-from tkinter import ttk
-from ARTcore.interface.chat import ChatModule
-from ARTcore.interface.content import ContentModule
-from ARTcore.interface.stats import StatsModule
+from .chat import ChatModule
+from .stats import StatsModule
+from ...settings import THEME, CHAT_FONT
 
 class Interface:
     def __init__(self, root, art_instance, report_generator):
         self.root = root
         self.art = art_instance
-        self.report_generator = report_generator  # Store ReportGenerator
-        self.root.title("ART - Pirate Command")
-        self.root.geometry("1400x1000")
-        self.bg_color = "#1A1A1A"
-        self.fg_color = "#FFFDD0"
-        self.edge_color = "#4B0082"
+        self.report_generator = report_generator
+        self.root.title("ART Interface")
+        self.root.geometry("1280x1024")
+        self.root.configure(bg=THEME["bg"])
 
-        total_width = 1400
-        total_height = 1000
-        stats_width = 300
-        module_height = (total_height - 90) / 2
+        # Main frame
+        self.main_frame = tk.Frame(self.root, bg=THEME["bg"])
+        self.main_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
 
-        self.art_label = tk.Label(self.root, text="ART", bg=self.bg_color, fg=self.fg_color, font=("Arial", 14))
-        self.art_label.place(x=10, y=10)
-        self.weather_label = tk.Label(self.root, text=self.art.weather_data, bg=self.bg_color, fg=self.fg_color, font=("Arial", 12))
-        self.weather_label.place(relx=1.0, y=10, anchor="ne", x=-10)
+        # Chat module
+        self.chat_module = ChatModule(self.main_frame, self.art)
+        self.chat_module.frame.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 
-        self.stats = StatsModule(self.root, self.art, self.report_generator)  # Pass report_generator
-        self.stats.frame.place(x=10, y=50, width=stats_width, height=total_height - 90)
+        # Stats module
+        self.stats_module = StatsModule(self.main_frame, self.art, self.report_generator)
 
-        self.content = ContentModule(self.root, self.art)
-        self.content.frame.place(x=10 + stats_width + 20, y=50, width=total_width - stats_width - 40, height=module_height)
+        # Weather label
+        self.weather_label = tk.Label(self.main_frame, text=self.art.weather_data, bg=THEME["bg"], fg=THEME["fg"], font=("Arial", 12))
+        self.weather_label.pack(side=tk.TOP, anchor="ne", padx=5, pady=5)
 
-        self.chat = ChatModule(self.root, self.art)
-        self.chat.frame.place(x=10 + stats_width + 20, y=50 + module_height, width=total_width - stats_width - 40, height=module_height)
-
-        self.root.configure(bg=self.bg_color)
-        self.content.update_theme(self.bg_color, self.fg_color, self.edge_color)
-        self.chat.update_theme(self.bg_color, self.fg_color, self.edge_color)
-        self.stats.update_theme(self.bg_color, self.fg_color, self.edge_color)
-
-        self.root.bind("<Configure>", self.on_resize)
-
-    def on_resize(self, event):
-        total_width = self.root.winfo_width()
-        total_height = self.root.winfo_height()
-        stats_width = 300
-        module_height = max((total_height - 90) / 2, 100)
-        self.weather_label.place(relx=1.0, y=10, anchor="ne", x=-10)
-        self.stats.frame.place(x=10, y=50, width=stats_width, height=total_height - 90)
-        self.content.frame.place(x=10 + stats_width + 20, y=50, width=total_width - stats_width - 40, height=module_height)
-        self.chat.frame.place(x=10 + stats_width + 20, y=50 + module_height, width=total_width - stats_width - 40, height=module_height)
+        self.update_theme()
 
     def update_weather(self):
-        self.weather_label.configure(text=self.art.weather_data)
+        self.weather_label.config(text=self.art.weather_data)
+        self.root.after(60000, self.update_weather)
+
+    def update_theme(self):
+        bg = THEME["bg"]
+        fg = THEME["fg"]
+        edge = THEME["edge"]
+        self.main_frame.configure(bg=bg)
+        self.chat_module.update_theme(bg, fg, edge)
+        self.stats_module.update_theme(bg, fg, edge)
+        self.weather_label.configure(bg=bg, fg=fg)
