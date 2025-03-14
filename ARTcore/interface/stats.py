@@ -1,4 +1,4 @@
-# Stats - XNO Balance - 2025-03-14
+# Stats - Balance Cached - 2025-03-14
 import tkinter as tk
 import os
 import time
@@ -16,6 +16,7 @@ class StatsModule:
         self.nano_balance = 0.0
         self.nano_cost = 0.0
         self.grok_cost = 0.0
+        self.update_balance()  # Initial fetch
         self.update_stats()
 
     def update_stats(self):
@@ -50,9 +51,8 @@ class StatsModule:
             self.nano_balance = float(balance_info["balance"])
             self.nano_cost = 0.001  # Placeholder
         else:
-            self.nano_balance = 0.0
+            self.nano_balance = self.nano_balance if self.nano_balance else 0.0
             self.nano_cost = 0.0
-        self.update_stats()
 
     def get_dir_size(self, path):
         total = 0
