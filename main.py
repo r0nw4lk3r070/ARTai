@@ -1,10 +1,11 @@
-# main.py - ART Core with APIs, Prompts, and CLI/Loop - 2025-03-14
+# main.py - ART Core with APIs, Prompts, DB, and CLI/Loop - 2025-03-14
 import os
 import sys
 from dotenv import load_dotenv
 from ARTchain.watchdog import Watchdog
 from ARTcore.api_clients import APIClients
 from ARTcore.prompts import Prompts
+from ART_DB.db import ARTDB
 
 class ART:
     def __init__(self):
@@ -18,32 +19,48 @@ class ART:
         self.watchdog = Watchdog(self)
         self.api = APIClients(self.api_keys)
         self.prompts = Prompts(self)
+        self.db = ARTDB(self.root_dir)
         print("ART core initialized")
 
     def respond(self, command):
         prompt_response = self.prompts.handle(command)
         if prompt_response is not None:
-            return prompt_response
-        
-        if command.lower() == "weather":
-            return self.api.fetch_weather("Sint-Joris-Weert")
+            response = prompt_response
         else:
-            return self.api.respond(command)
+            response = self.api.respond(command)
+        
+        self.db.log_chat(f"Command: {command} | Response: {response}")
+        return response
 
 if __name__ == "__main__":
     art = ART()
     print("ART online")
+    db_size = art.db.get_db_size()
+    api_mode = art.api.mode
+    api_model = "chatgpt-4o-latest" if api_mode == "nanogpt" else "N/A"
     if len(sys.argv) > 1:
         # CLI mode
         command = " ".join(sys.argv[1:])
-        print(art.respond(command))
+        if command.lower() == "weather":
+            response = art.api.fetch_weather("Sint-Joris-Weert")
+            art.db.log_chat(f"Command: {command} | Response: {response}")
+            print(f"API: {api_mode} (Model: {api_model}) | DB Size: {db_size:.5f} GB")
+            print(response)
+        else:
+            response = art.respond(command)
+            print(f"API: {api_mode} (Model: {api_model}) | DB Size: {db_size:.5f} GB")
+            print(response)
     else:
         # Interactive loop
-        print("Type yer orders, cap’n! ('exit' to quit)")
+        print(f"Type yer orders, cap’n! ('exit' to quit) | API: {api_mode} (Model: {api_model}) | DB Size: {db_size:.5f} GB")
         while True:
             command = input("ART> ")
             if command.lower() == "exit":
                 print("ART shuttin’ down—fair winds, cap’n!")
                 break
             response = art.respond(command)
+            db_size = art.db.get_db_size()
+            api_mode = art.api.mode
+            api_model = "chatgpt-4o-latest" if api_mode == "nanogpt" else "N/A"
+            print(f"API: {api_mode} (Model: {api_model}) | DB Size: {db_size:.5f} GB")
             print(response)
