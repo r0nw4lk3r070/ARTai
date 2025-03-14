@@ -1,3 +1,4 @@
+# Restored from ART Watchdog backup - Fixed 2025-03-13
 import tkinter as tk
 from tkinter import ttk
 
@@ -12,7 +13,7 @@ class ContentModule:
         
         self.tab_contents = {}
         for name in ["CLI", "Code", "Mail", "Chat", "Web", "News"]:
-            self.tab_contents[name] = tk.Text(self.content_area, wrap=tk.WORD)
+            self.tab_contents[name] = tk.Text(self.content_area, wrap=tk.WORD, height=20, font=("Arial", 12))
 
         self.active_tab = "CLI"
         self.tab_contents[self.active_tab].pack(fill=tk.BOTH, expand=True)
@@ -31,16 +32,18 @@ class ContentModule:
     def switch_tab(self, tab_name):
         if self.active_tab:
             self.tab_contents[self.active_tab].pack_forget()
+        
         self.tab_contents[tab_name].pack(fill=tk.BOTH, expand=True)
         self.active_tab = tab_name
+        
         for name, btn in self.tab_buttons.items():
             btn.configure(bg="#000000" if name != tab_name else "#333333")
 
     def update_theme(self, bg, fg, edge):
-        self.frame.configure(bg=bg, bd=1, relief="solid", highlightbackground=edge, highlightthickness=1)
+        self.frame.configure(bg=bg, highlightbackground=edge, highlightthickness=1)
         self.content_area.configure(bg=bg)
         self.tab_bar.configure(bg="#000000")
-        for btn in self.tab_buttons.values():
+        for btn in self.tab_buttons.values():  # Fixed: values(), not items()
             btn.configure(bg="#000000" if btn.cget("text") != self.active_tab else "#333333", fg="#FFFFFF")
         for tab in self.tab_contents.values():
             tab.configure(bg=bg, fg=fg, insertbackground=fg)
