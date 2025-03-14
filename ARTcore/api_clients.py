@@ -20,28 +20,35 @@ class APIClients:
         elif "api:nanogpt" in command.lower():
             self.mode = "nanogpt"
             return "Switched to NanoGPT mode"
+        elif "api:offline" in command.lower():
+            self.mode = "offline"
+            return "Switched to offline mode"
 
-        if self.mode == "nanogpt" and self.api_keys.get("nano_gpt"):
+        if self.mode == "nanogpt":
+            if not self.api_keys.get("nano_gpt"):
+                return "NanoGPT: No API key, cap’n—check .env!"
             Thread(target=self._query_nano_gpt, args=(command,)).start()
             try:
                 return self.response_queue.get(timeout=10)
             except Exception:
                 print("NanoGPT timed out")
-                return "NanoGPT offline: Server’s lost, cap’n!"
-        elif self.mode == "grok" and self.api_keys.get("grok_api"):
+                return "NanoGPT: Timed out—server’s dodgy, cap’n!"
+        elif self.mode == "grok":
+            if not self.api_keys.get("grok_api"):
+                return "Grok: No API key, cap’n—check .env!"
             Thread(target=self._query_grok, args=(command,)).start()
             try:
                 return self.response_queue.get(timeout=10)
             except Exception:
                 print("Grok timed out")
-                return "Grok offline: Auth failed—check yer key, mate!"
+                return "Grok: Timed out—server’s dodgy, cap’n!"
         else:
-            return "Offline mode—no APIs ready, cap’n!"
+            return "Offline mode—no APIs active, cap’n!"
 
     def _query_nano_gpt(self, prompt):
         try:
             headers = {"Authorization": f"Bearer {self.api_keys['nano_gpt']}", "Content-Type": "application/json"}
-            data = {"model": "nano-gpt", "messages": [{"role": "user", "content": prompt}], "max_tokens": 500}
+            data = {"model": "chatgpt-4o-latest", "messages": [{"role": "user", "content": prompt}], "max_tokens": 500}
             print(f"Querying NanoGPT with: {prompt}")
             response = requests.post(self.nano_gpt_url, headers=headers, json=data, timeout=5)
             response.raise_for_status()
@@ -50,7 +57,7 @@ class APIClients:
             self.response_queue.put(result)
         except Exception as e:
             print(f"NanoGPT query failed: {str(e)}")
-            self.response_queue.put(f"NanoGPT offline: Server’s lost, cap’n!")
+            self.response_queue.put(f"NanoGPT: Failed—{str(e)}, cap’n!")
 
     def _query_grok(self, prompt):
         try:
@@ -64,7 +71,7 @@ class APIClients:
             self.response_queue.put(result)
         except Exception as e:
             print(f"Grok query failed: {str(e)}")
-            self.response_queue.put(f"Grok offline: Auth failed—check yer key, mate!")
+            self.response_queue.put(f"Grok: Failed—{str(e)}, cap’n!")
 
     def fetch_weather(self, location):
         if not self.api_keys.get("openweather"):
