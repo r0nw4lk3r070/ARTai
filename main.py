@@ -1,4 +1,4 @@
-# main.py - ART Core with APIs, Prompts, and CLI - 2025-03-14
+# main.py - ART Core with APIs, Prompts, and CLI/Loop - 2025-03-14
 import os
 import sys
 from dotenv import load_dotenv
@@ -38,5 +38,12 @@ if __name__ == "__main__":
         command = " ".join(sys.argv[1:])
         print(art.respond(command))
     else:
-        # No auto-test—wait for CLI input
-        print("Awaiting yer orders, cap’n! Try: python main.py \"watchdog backup\"")
+        # Interactive loop
+        print("Type yer orders, cap’n! ('exit' to quit)")
+        while True:
+            command = input("ART> ")
+            if command.lower() == "exit":
+                print("ART shuttin’ down—fair winds, cap’n!")
+                break
+            response = art.respond(command)
+            print(response)
