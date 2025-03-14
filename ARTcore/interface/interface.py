@@ -1,9 +1,9 @@
-# Restored from ART Watchdog backup - Updated 2025-03-13
+# Restored from ART Watchdog backup - Fixed 2025-03-14
 import tkinter as tk
 from tkinter import ttk
 from ARTcore.interface.chat import ChatModule
 from ARTcore.interface.content import ContentModule
-from ARTcore.interface.stats import StatsModule
+from ARTcore.interface.stats import StatsModule  # Added back
 
 class Interface:
     def __init__(self, root, art_instance):
@@ -20,6 +20,10 @@ class Interface:
         stats_width = 300
         module_height = (total_height - 90) / 2
 
+        print(f"Stats at x=10, y=50, width={stats_width}, height={total_height - 90}")
+        print(f"Content at x={10 + stats_width + 20}, y=50, width={total_width - stats_width - 40}, height={module_height}")
+        print(f"Chat at x={10 + stats_width + 20}, y={50 + module_height}, width={total_width - stats_width - 40}, height={module_height}")
+
         self.art_label = tk.Label(self.root, text="ART", bg=self.bg_color, fg=self.fg_color, font=("Arial", 14))
         self.art_label.place(x=10, y=10)
         self.weather_label = tk.Label(self.root, text=self.art.weather_data, bg=self.bg_color, fg=self.fg_color, font=("Arial", 12))
@@ -28,10 +32,10 @@ class Interface:
         self.stats = StatsModule(self.root, self.art)
         self.stats.frame.place(x=10, y=50, width=stats_width, height=total_height - 90)
 
-        self.content = ContentModule(self.root, self.art)
+        self.content = ContentModule(self.root, self.art)  # Top-right
         self.content.frame.place(x=10 + stats_width + 20, y=50, width=total_width - stats_width - 40, height=module_height)
 
-        self.chat = ChatModule(self.root, self.art)
+        self.chat = ChatModule(self.root, self.art)  # Bottom-right
         self.chat.frame.place(x=10 + stats_width + 20, y=50 + module_height, width=total_width - stats_width - 40, height=module_height)
 
         self.root.configure(bg=self.bg_color)
