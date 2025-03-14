@@ -6,8 +6,9 @@ from queue import Queue
 class APIClients:
     def __init__(self, api_keys):
         self.api_keys = api_keys
-        self.nano_gpt_url = "https://api.n60f4x.com/v1/chat/completions"
+        self.nano_gpt_url = "https://nano-gpt.com/api/talk-to-gpt"
         self.grok_url = "https://api.xai.com/v1/chat/completions"
+        self.nano_balance_url = "https://nano-gpt.com/api/check-nano-balance"
         self.response_queue = Queue()
         self.mode = "nanogpt" if api_keys.get("nano_gpt") else "offline"
         print(f"API clients initialized in {self.mode} mode")
@@ -47,12 +48,16 @@ class APIClients:
 
     def _query_nano_gpt(self, prompt):
         try:
-            headers = {"Authorization": f"Bearer {self.api_keys['nano_gpt']}", "Content-Type": "application/json"}
-            data = {"model": "chatgpt-4o-latest", "messages": [{"role": "user", "content": prompt}], "max_tokens": 500}
+            headers = {"x-api-key": self.api_keys["nano_gpt"], "Content-Type": "application/json"}
+            data = {"prompt": prompt, "model": "chatgpt-4o-latest", "messages": []}
             print(f"Querying NanoGPT with: {prompt}")
             response = requests.post(self.nano_gpt_url, headers=headers, json=data, timeout=5)
             response.raise_for_status()
-            result = response.json()["choices"][0]["message"]["content"].strip()
+            raw = response.text
+            parts = raw.split('<NanoGPT>')
+            text_response = parts[0].strip()
+            nano_info = json.loads(parts[1].split('</NanoGPT>')[0])
+            result = f"{text_response} (Cost: {nano_info['cost']}, Tokens: {nano_info['inputTokens']}/{nano_info['outputTokens']})"
             print(f"NanoGPT response: {result}")
             self.response_queue.put(result)
         except Exception as e:
@@ -89,3 +94,19 @@ class APIClients:
         except Exception as e:
             print(f"Weather error: {str(e)}")
             return f"Weather error: {str(e)}"
+
+    def check_balance(self):
+        if not self.api_keys.get("nano_gpt"):
+            return "NanoGPT Balance: No API key, cap’n!"
+        try:
+            headers = {"x-api-key": self.api_keys["nano_gpt"], "Content-Type": "application/json"}
+            print("Checking NanoGPT balance...")
+            response = requests.post(self.nano_balance_url, headers=headers, timeout=5)
+            response.raise_for_status()
+            balance_info = response.json()
+            result = f"Balance: {balance_info['balance']} Nano | Receivable: {balance_info['receivable']} Nano | Earned: {balance_info['earned']} Nano"
+            print(f"NanoGPT balance: {result}")
+            return result
+        except Exception as e:
+            print(f"Balance check failed: {str(e)}")
+            return f"Balance check failed—{str(e)}, cap’n!"
