@@ -1,9 +1,0 @@
-https://grok.com/share/bGVnYWN5_be37ad7b-21ae-4c13-938a-6eade70fb6bd 
-
-C:\Windows\System32>cd c:\users\r0nw4\ART
-
-c:\Users\r0nw4\ART>.venv\Scripts\activate
-
-latest grok: https://grok.com/share/bGVnYWN5_ed5a2ca8-30e4-486e-9e5e-554e1162bffd
-
-ART V4 new edition grok: https://grok.com/share/bGVnYWN5_554233f9-dc43-48ec-8e60-583d8ec07731

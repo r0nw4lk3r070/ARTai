@@ -1,7 +1,0 @@
-Database
-Dataset
-Learning tools
-learning reports/graphs/summaries
-Coding sets
-
-Everything related to offline Language and coding capabilities. 

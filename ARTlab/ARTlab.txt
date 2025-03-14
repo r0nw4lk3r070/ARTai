@@ -1,1 +1,0 @@
-Art sandbox enviroment for coding. reading, writing and altering files as ART learns coding. 
